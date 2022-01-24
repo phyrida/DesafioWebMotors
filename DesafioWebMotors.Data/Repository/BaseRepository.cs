@@ -21,7 +21,7 @@ namespace DesafioWebMotors.Data.Repository
             _dataSet = _context.Set<T>();
         }
 
-        public async Task<bool> DeleteAsync(long id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var result = await SelectAsync(id);
             if (result == null)
@@ -52,7 +52,7 @@ namespace DesafioWebMotors.Data.Repository
                 .ToListAsync();
         }
 
-        public async Task<T> SelectAsync(long id)
+        public async Task<T> SelectAsync(int id)
         {
             return await _dataSet
                 .AsNoTracking()

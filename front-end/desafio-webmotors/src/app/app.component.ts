@@ -7,28 +7,12 @@ import { DesafioServiceService } from './services/desafio/desafio-service.servic
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'desafio-webmotors';
-  listAnnouncement: AnnouncementModel[] = []
 
-  constructor(private desafioServiceService: DesafioServiceService) {
+
+  constructor() {
 
   }
-
-  ngOnInit() {
-
-    this.desafioServiceService.getAnnouncement()
-    .then(
-      (dataResponse: AnnouncementModel[]) => {
-        console.log(dataResponse);
-        this.listAnnouncement = dataResponse;
-      },
-      (error) => {
-        console.log(error);
-      }
-
-    )
-  }
-
 
 }

@@ -34,7 +34,7 @@ export class DesafioServiceService {
   getModel(makeId:number):Promise<ModelModel[]>{
     return new Promise<ModelModel[]>((resolve, reject) => {
       this.http
-        .get<ModelModel[]>(environment.urlApi + '/DesafioOnline/model')
+        .get<ModelModel[]>(environment.urlApi + '/DesafioOnline/model?MakeID=' +  makeId)
         .subscribe(
           (data: ModelModel[]) => {
             resolve(data);

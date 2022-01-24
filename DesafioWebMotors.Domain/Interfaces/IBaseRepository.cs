@@ -12,9 +12,9 @@ namespace DesafioWebMotors.Domain.Interfaces
 
         Task<T> UpdateAsync(T item);
 
-        Task<bool> DeleteAsync(long id);
+        Task<bool> DeleteAsync(int id);
 
-        Task<T> SelectAsync(long id);
+        Task<T> SelectAsync(int id);
 
         Task<IEnumerable<T>> SelectAsync(int page, int count);
 

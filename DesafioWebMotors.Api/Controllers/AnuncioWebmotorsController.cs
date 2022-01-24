@@ -73,7 +73,7 @@ namespace DesafioWebMotors.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(200, Type = typeof(AnuncioWebmotorsDto))]
-        public async Task<IActionResult> GetAnnouncementById([FromRoute] long id)
+        public async Task<IActionResult> GetAnnouncementById([FromRoute] int id)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace DesafioWebMotors.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> Delete([FromRoute] long id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try
             {

@@ -5,7 +5,7 @@ namespace DesafioWebMotors.Domain.Interfaces.Services
 {
     public interface IServiceBase<TEntity, Create, Read, Update>
     {
-        Task<Read> GetAsync(long id);
+        Task<Read> GetAsync(int id);
 
         Task<IEnumerable<Read>> GetAllAsync(int page, int count);
 
@@ -15,6 +15,6 @@ namespace DesafioWebMotors.Domain.Interfaces.Services
 
         Task<Read> PutAsync(Update user);
 
-        Task<bool> DeleteAsync(long id);
+        Task<bool> DeleteAsync(int id);
     }
 }

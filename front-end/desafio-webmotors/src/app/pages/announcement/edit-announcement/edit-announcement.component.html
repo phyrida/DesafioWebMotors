@@ -1,1 +1,67 @@
-<p>edit-announcement works!</p>
+<form [formGroup]="form">
+  <table>
+    <caption>
+      <h3>Cadastrar novo anúncio</h3>
+      <br>
+    </caption>
+    <tr>
+      <td>Marca</td>
+      <td>
+        <select (change)="loadModel($event)" formControlName="marcaControlValidator">
+          <option value="0">Selecione uma marca</option>
+          <option *ngFor="let item of listMaker" [value]="item.id">{{ item.name }}</option>
+        </select>
+        <br>
+        <small>{{currentMake}}</small>
+      </td>
+    </tr>
+    <tr>
+      <td>Modelo</td>
+      <td>
+        <select (change)="loadVersion($event)" formControlName="modeloControlValidator">
+          <option value="0">Selecione um modelo</option>
+          <option *ngFor="let item of listModel" [value]="item.id">{{ item.name }}</option>
+        </select>
+        <br>
+        <small>{{currentModel}}</small>
+      </td>
+    </tr>
+    <tr>
+      <td>Versão</td>
+      <td>
+        <select formControlName="versaoControlValidator" (change)="selectVersion($event)">
+          <option value="0">Selecione uma versão</option>
+          <option *ngFor="let item of listVersion" [value]="item.id">{{ item.name }}</option>
+        </select>
+        <br>
+        <small>{{currentVersion}}</small>
+      </td>
+    </tr>
+    <tr>
+      <td>Ano</td>
+      <td>
+        <input type="number" formControlName="anoControlValidator">
+
+      </td>
+    </tr>
+    <tr>
+      <td>Quilomentragem</td>
+      <td>
+        <input type="number" formControlName="kmControlValidator">
+      </td>
+    </tr>
+    <tr>
+      <td>Observação</td>
+      <td>
+        <textarea formControlName="obsControlValidator"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input type="submit" [disabled]="form.invalid" (click)="update()" value="Criar Anúncio">
+      </td>
+    </tr>
+  </table>
+</form>
+

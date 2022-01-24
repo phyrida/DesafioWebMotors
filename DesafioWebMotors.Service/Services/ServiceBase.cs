@@ -24,7 +24,7 @@ namespace DesafioWebMotors.Service.Services
             _validator = validator;
         }
 
-        public virtual async Task<bool> DeleteAsync(long id)
+        public virtual async Task<bool> DeleteAsync(int id)
         {
             return await _repository.DeleteAsync(id);
         }
@@ -41,7 +41,7 @@ namespace DesafioWebMotors.Service.Services
             return _mapper.Map<IEnumerable<Read>>(result);
         }
 
-        public async Task<Read> GetAsync(long id)
+        public async Task<Read> GetAsync(int id)
         {
             var result = await _repository.SelectAsync(id);
             return _mapper.Map<Read>(result);

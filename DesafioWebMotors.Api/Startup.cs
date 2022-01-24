@@ -14,6 +14,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DesafioWebMotors.IoC;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
+using Newtonsoft.Json.Converters;
 
 namespace DesafioWebMotors.Api
 {
@@ -30,9 +33,30 @@ namespace DesafioWebMotors.Api
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigDatabase(services);
-            services.AddCors();
 
-            services.AddControllers();
+            services.AddResponseCompression(
+               options =>
+               {
+                   options.Providers.Add<BrotliCompressionProvider>();
+                   options.Providers.Add<GzipCompressionProvider>();
+               });
+
+            services.Configure<BrotliCompressionProviderOptions>(
+                options =>
+                {
+                    options.Level = CompressionLevel.Fastest;
+                });
+
+            services.Configure<GzipCompressionProviderOptions>(
+                options =>
+                {
+                    options.Level = CompressionLevel.Fastest;
+                });
+
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                        options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DesafioWebMotors.Api", Version = "v1" });
@@ -50,6 +74,12 @@ namespace DesafioWebMotors.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DesafioWebMotors.Api v1"));
             }
+            app.UseCors(opt =>
+            {
+                opt.AllowAnyOrigin();
+                opt.AllowAnyHeader();
+                opt.AllowAnyMethod();
+            });
 
             app.UseRouting();
 
@@ -60,12 +90,7 @@ namespace DesafioWebMotors.Api
                 endpoints.MapControllers();
             });
 
-            app.UseCors(opt =>
-            {
-                opt.AllowAnyOrigin();
-                opt.AllowAnyHeader();
-                opt.AllowAnyMethod();
-            });
+           
 
             CreateDatabase(app);
         }
