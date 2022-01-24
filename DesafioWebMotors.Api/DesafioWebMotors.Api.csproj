@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DesafioWebMotors.Data\DesafioWebMotors.Data.csproj" />
+		<ProjectReference Include="..\DesafioWebmotors.DesafioOnline\DesafioWebmotors.DesafioOnline.csproj" />
+		<ProjectReference Include="..\DesafioWebMotors.Domain\DesafioWebMotors.Domain.csproj" />
+		<ProjectReference Include="..\DesafioWebMotors.IoC\DesafioWebMotors.IoC.csproj" />
+		<ProjectReference Include="..\DesafioWebMotors.Service\DesafioWebMotors.Service.csproj" />
+	</ItemGroup>
+
+</Project>
