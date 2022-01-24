@@ -39,7 +39,6 @@ namespace DesafioWebMotors.Api.Controllers
             {
                 return BadRequest(new { code = 500, message = "Falha interna do servidor" });
             }
-
         }
 
         [HttpGet("model")]

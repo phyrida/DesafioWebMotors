@@ -32,7 +32,6 @@ namespace DesafioWebMotors.Api
             ConfigDatabase(services);
             services.AddCors();
 
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -52,8 +51,6 @@ namespace DesafioWebMotors.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DesafioWebMotors.Api v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -61,6 +58,13 @@ namespace DesafioWebMotors.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseCors(opt =>
+            {
+                opt.AllowAnyOrigin();
+                opt.AllowAnyHeader();
+                opt.AllowAnyMethod();
             });
 
             CreateDatabase(app);
